@@ -12,16 +12,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         createPlayerGameArea(player1, 1);
         promptEnterKey();
         createPlayerGameArea(player2, 2);
         promptEnterKey();
         startGame();
 
-
     }
-
 
     public static void createPlayerGameArea(char player[][], int playerNunber) {
 
@@ -50,7 +47,6 @@ public class Main {
 
     }
 
-
     static {
         init(player1);
         init(player2);
@@ -72,13 +68,6 @@ public class Main {
     static Optional<Ship> createShip(Cell start, Cell end, Ships shipType) {
 
         if ((start.x != end.x) == (start.y != end.y)) {// to control same line
-            /*
-            FOR EXAMPLE A2 E2
-            start.x = 0(A)
-            end.x = 4(E)
-            start.y = 2(1)
-            end.y = 2(1)
-             */
 
             System.out.println("\nError! Invalid coordinates! Try again:\n");
 
@@ -158,7 +147,6 @@ public class Main {
     }
 
 //    static boolean isSurroundingClear (ship)
-
     static Cell parseCoordinate(String coordinate) {
 
         int x = (coordinate.charAt(0)) % 65; // we found x coordinate for field array
@@ -180,7 +168,6 @@ public class Main {
         }
         System.out.println();
     }
-
 
     public static void playerTurn(int playerNumber) {
         if (playerNumber == 1) {
@@ -204,7 +191,6 @@ public class Main {
         String shootCoordinate = scanner.next();
         Cell shootCell = parseCoordinate(shootCoordinate);
 
-
         try {
 
             if (player2[shootCell.x][shootCell.y] == 'O') {
@@ -227,7 +213,6 @@ public class Main {
         }
     }
 
-
     static void player1Turn() {
 
         playerTurn(1);
@@ -235,16 +220,15 @@ public class Main {
         String shootCoordinate = scanner.next();
         Cell shootCell = parseCoordinate(shootCoordinate);
 
-
         try {
             if (player2[shootCell.x][shootCell.y] == 'O') {
 
                 player2[shootCell.x][shootCell.y] = 'X';
 
                 if (allSunk(player2)) {
-                    //playerTurn(1);
-                    //currentBoard(player1);
+
                     System.out.println("\nYou sank the last ship. You won. Congratulations!");
+
                 } else if (isSunkShip(shootCell.x, shootCell.y, player2)) {
 
                     System.out.println("You sank a ship!");
@@ -268,17 +252,13 @@ public class Main {
                 promptEnterKey();
                 player2Turn();
             }
-//
-
 
         } catch (Exception e) {
             System.out.println("Error! You entered the wrong coordinates! Try again:\n");
             player1Turn();
 
         }
-
     }
-
 
     static void player2Turn() {
 
@@ -286,7 +266,6 @@ public class Main {
 
         String shootCoordinate = scanner.next();
         Cell shootCell = parseCoordinate(shootCoordinate);
-
 
         try {
 
@@ -320,14 +299,11 @@ public class Main {
                 player1Turn();
             }
 
-
         } catch (Exception e) {
             System.out.println("Error! You entered the wrong coordinates! Try again:\n");
             player2Turn();
         }
-
     }
-
 
     static boolean allSunk(char board[][]) {
 
@@ -349,7 +325,6 @@ public class Main {
         }
     }
 
-
     public static void promptEnterKey() {
         System.out.println("Press Enter and pass the move to another player");
         try {
@@ -358,7 +333,6 @@ public class Main {
             e.printStackTrace();
         }
     }
-
 
     public static boolean isSunkShip(int x, int y, char playNet[][]) {
         int i = 1;
